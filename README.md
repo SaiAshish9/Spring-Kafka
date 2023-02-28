@@ -17,3 +17,23 @@ topics , brokers and partitions
 <img width="826" alt="Screenshot 2023-03-01 at 1 24 39 AM" src="https://user-images.githubusercontent.com/43849911/221964168-44bdd497-17d0-402f-99ed-14972993b215.png">
 
 <img width="1291" alt="Screenshot 2023-03-01 at 1 38 45 AM" src="https://user-images.githubusercontent.com/43849911/221967023-eaa55731-fb29-429d-9f68-ba8a50580a51.png">
+
+```
+tar -xzf kafka_2.13-3.4.0.tgz
+kafka_2.13-3.4.0
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
+Topic: quickstart-events        TopicId: NPmZHyhbR9y00wMglMH2sg PartitionCount: 1       ReplicationFactor: 1	Configs:
+Topic: quickstart-events Partition: 0    Leader: 0   Replicas: 0 Isr: 0
+
+bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+This is my first event
+This is my second event
+
+bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+This is my first event
+This is my second event
+```
