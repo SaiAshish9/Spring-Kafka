@@ -16,3 +16,4 @@ topics , brokers and partitions
 
 <img width="826" alt="Screenshot 2023-03-01 at 1 24 39 AM" src="https://user-images.githubusercontent.com/43849911/221964168-44bdd497-17d0-402f-99ed-14972993b215.png">
 
+<img width="1291" alt="Screenshot 2023-03-01 at 1 38 45 AM" src="https://user-images.githubusercontent.com/43849911/221967023-eaa55731-fb29-429d-9f68-ba8a50580a51.png">
