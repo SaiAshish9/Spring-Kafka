@@ -37,3 +37,72 @@ bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --boots
 This is my first event
 This is my second event
 ```
+
+https://www.conduktor.io/kafka/kafka-brokers
+
+```
+
+How do the Kafka brokers and clients keep track of all the Kafka brokers if there is more than one? The Kafka team decided to use Zookeeper for this purpose.
+
+Zookeeper is used for metadata management in the Kafka world. For example:
+Zookeeper keeps track of which brokers are part of the Kafka cluster
+Zookeeper is used by Kafka brokers to determine which broker is the leader of a given partition and topic and perform leader elections
+Zookeeper stores configurations for topics and permissions
+Zookeeper sends notifications to Kafka in case of changes (e.g. new topic, broker dies, broker comes up, delete topics, etc.…)
+
+
+A Zookeeper cluster is called an ensemble. It is recommended to operate the ensemble with an odd number of servers, e.g., 3, 5, 7, as a strict majority of ensemble members (a quorum) must be working in order for Zookeeper to respond to requests. Zookeeper has a leader to handle writes, the rest of the servers are followers to handle reads.
+
+
+All of the APIs and commands that were previously leveraging Zookeeper are migrated to use Kafka instead, so that when clusters are migrated to be without Zookeeper, the change is invisible to clients.
+
+Zookeeper is also less secure than Kafka, and therefore Zookeeper ports should only be opened to allow traffic from Kafka brokers, and not Kafka clients
+
+Zookeeper is used to track cluster state, membership, and leadership
+
+Zookeeper Being Eliminated from Kafka v4.x
+
+In Kafka, replication means that data is written down not just to one broker, but many.
+
+
+Apache Kafka is used primarily to build real-time data streaming pipelines.
+
+
+
+In the cluster below consisting of three brokers, the replication factor is 2. When a message is written down into Partition 0 of Topic-A in Broker 101, it is also written down into Broker 102 because it has Partition 0 as a replica.
+
+Kafka brokers store data in a directory on the server disk they run on. Each topic-partition receives its own sub-directory with the associated name of the topic. The advanced internals of how Kafka stores data is discussed in Kafka Topics Internals: Segments and Indexes.
+
+A single Kafka server is called a Kafka Broker. That Kafka broker is a program that runs on the Java Virtual Machine (Java version 11+) and usually a server that is meant to be a Kafka broker will solely run the necessary program and nothing else.
+
+An ensemble of Kafka brokers working together is called a Kafka cluster. Some clusters may contain just one broker or others may contain three or potentially hundreds of brokers. Companies like Netflix and Uber run hundreds or thousands of Kafka brokers to handle their data.
+
+A broker in a cluster is identified by a unique numeric ID. 
+
+To achieve high throughput and scalability on topics, Kafka topics are partitioned. If there are multiple Kafka brokers in a cluster, then partitions for a given topic will be distributed among the brokers evenly, to achieve load balancing and scalability.
+
+
+Similar to how databases have tables to organize and segment datasets, Kafka uses the concept of topics to organize related messages.
+
+A topic is identified by its name. For example, we may have a topic called logs that may contain log messages from our application, and another topic called purchases that may contain purchase data from our application as it happens.
+
+Kafka topics can contain any kind of message in any format, and the sequence of all these messages is called a data stream.
+
+Data in Kafka topics is deleted after one week by default (also called the default message retention period), and this value is configurable. This mechanism of deleting old data ensures a Kafka cluster does not run out of disk space by recycling topics over time.
+
+Topics are broken down into a number of partitions. A single topic may have more than one partition, it is common to see topics with 100 partitions.
+
+The number of partitions of a topic is specified at the time of topic creation. Partitions are numbered starting from 0 to N-1, where N is the number of partitions. 
+
+The offset is an integer value that Kafka adds to each message as it is written into a partition. Each message in a given partition has a unique offset.
+
+Apache Kafka offsets represent the position of a message within a Kafka Partition. ffset numbering for every partition starts at 0 and is incremented for each message sent to a specific Kafka partition. This means that Kafka offsets only have a meaning for a specific partition, e.g., offset 3 in partition 0 doesn’t represent the same data as offset 3 in partition 1.
+
+Kafka Offset Ordering
+If a topic has more than one partition, Kafka guarantees the order of messages within a partition, but there is no ordering of messages across partitions.
+```
+
+<img width="979" alt="Screenshot 2023-03-01 at 2 11 39 AM" src="https://user-images.githubusercontent.com/43849911/221974721-6ff7cff3-8a1f-4704-b400-7f58c12b8965.png">
+
+
+
