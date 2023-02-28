@@ -100,6 +100,17 @@ Apache Kafka offsets represent the position of a message within a Kafka Partitio
 
 Kafka Offset Ordering
 If a topic has more than one partition, Kafka guarantees the order of messages within a partition, but there is no ordering of messages across partitions.
+
+consumers can consume data from Kafka topics partitions individually, but for horizontal scalability purposes it is recommended to consume Kafka topics as a group.
+
+A topic usually consists of many partitions. These partitions are a unit of parallelism for Kafka consumers.
+
+Kafka topics are immutable: once data is written to a partition, it cannot be changed
+
+A traffic company wants to track its fleet of trucks. Each truck is fitted with a GPS locator that reports its position to Kafka. We can create a topic named - trucks_gps to which the trucks publish their positions. Each truck may send a message to Kafka every 20 seconds, each message will contain the truck ID and the truck position (latitude and longitude). The topic may be split into a suitable number of partitions, say 10. There may be different consumers of the topic. For example, an application that displays truck locations on a dashboard or another application that sends notifications if an event of interest occurs.
+
+
+
 ```
 
 <img width="979" alt="Screenshot 2023-03-01 at 2 11 39 AM" src="https://user-images.githubusercontent.com/43849911/221974721-6ff7cff3-8a1f-4704-b400-7f58c12b8965.png">
