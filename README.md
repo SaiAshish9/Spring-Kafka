@@ -111,9 +111,12 @@ A traffic company wants to track its fleet of trucks. Each truck is fitted with 
 
 
 
+Partitioning is what enables messages to be split in parallel across several brokers in the cluster. Using this method of parallelism, Kafka scales to support multiple consumers and producers simultaneously. This method of partitioning allows linear scaling for both consumers as well as producers
+
 ```
 
 <img width="979" alt="Screenshot 2023-03-01 at 2 11 39 AM" src="https://user-images.githubusercontent.com/43849911/221974721-6ff7cff3-8a1f-4704-b400-7f58c12b8965.png">
+
 
 
 
