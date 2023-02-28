@@ -118,5 +118,6 @@ Partitioning is what enables messages to be split in parallel across several bro
 <img width="979" alt="Screenshot 2023-03-01 at 2 11 39 AM" src="https://user-images.githubusercontent.com/43849911/221974721-6ff7cff3-8a1f-4704-b400-7f58c12b8965.png">
 
 
+multiple brokers:
 
-
+https://sagarkudu.medium.com/set-up-a-kafka-cluster-in-local-with-multiple-kafka-brokers-98d4e4e7a343
